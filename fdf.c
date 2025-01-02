@@ -6,18 +6,25 @@
 /*   By: ebabaogl <ebabaogl@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 11:39:32 by ebabaogl          #+#    #+#             */
-/*   Updated: 2025/01/02 11:58:41 by ebabaogl         ###   ########.fr       */
+/*   Updated: 2025/01/02 16:47:26 by ebabaogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
 #include "fdf.h"
+#include "window.h"
+#include "libft.h"
 
+#include <stdio.h>
+#include <stdlib.h>
 int	main()
 {
-	t_data	data;
+	//t_vars	vars;
+	//t_mlx	mlx;
 	
-	data.mlx_ptr = mlx_init();
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WIDTH, HEIGHT, "FdF!!1!!!1");
-	mlx_loop(data.mlx_ptr);
+	char	*map = read_file("test_maps/42.fdf");
+	printf("%s", map);
+	free(map);
+	//vars.mlx = &mlx;
+	//if (init_win(vars.mlx) == -1)
+	return (1);
 }

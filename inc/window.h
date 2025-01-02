@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   window.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebabaogl <ebabaogl@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 11:09:46 by ebabaogl          #+#    #+#             */
-/*   Updated: 2024/11/03 14:40:10 by ebabaogl         ###   ########.fr       */
+/*   Created: 2025/01/02 13:34:08 by ebabaogl          #+#    #+#             */
+/*   Updated: 2025/01/02 15:12:21 by ebabaogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef WINDOW_H
+# define WINDOW_H
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5
-# endif
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
 
-# include <stddef.h>
+# define ON_DESTROY 17
 
-char	*get_next_line(int fd);
+# define ESC_KEY 65307
 
-size_t	ft_strlen(char *s);
-void	*ft_memset(void *b, int c, size_t len);
-void	*ft_calloc(size_t count, size_t size);
-char	*ft_strchr(char *s, int c);
-char	*ft_strjoin(char *s1, char *s2);
+// enum {
+// 	ON_KEYDOWN = 2,
+// 	ON_KEYUP = 3,
+// 	ON_MOUSEDOWN = 4,
+// 	ON_MOUSEUP = 5,
+// 	ON_MOUSEMOVE = 6,
+// 	ON_EXPOSE = 12,
+// 	ON_DESTROY = 17
+// };
+
+typedef struct	s_mlx
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+}				t_mlx;
 
 #endif
