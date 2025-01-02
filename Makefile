@@ -50,3 +50,5 @@ fclean: clean
 	@make -C $(GNL_DIR) fclean
 
 re:	fclean all
+
+.PHONY: all clean fclean re
