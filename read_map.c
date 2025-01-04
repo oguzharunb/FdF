@@ -95,7 +95,6 @@ unsigned long	**map_string_to_arr_2d(char *whole_file)
 	map_2d_ul = malloc(sizeof(unsigned long *) * (line_count + 1));
 	if (!map_2d_ul)
 		return (free(map_2d_str), NULL);
-	printf("line_count: %lu\n", line_count);
 	i = 0;
 	while (map_2d_str[i])
 	{
