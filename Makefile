@@ -8,7 +8,7 @@ LIBFT			= $(LIBFT_DIR)/libft.a
 MLX				= $(MLX_DIR)/libmlx.a
 BUILD_DIR		= build
 
-SRCS			= fdf.c window_management.c read_map.c libft_extra.c
+SRCS			= fdf.c window_management.c read_map.c libft_extra.c point_utils.c
 OBJS			= $(addprefix $(BUILD_DIR)/,$(SRCS:.c=.o))
 CFLAGS			= -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
 LDFLAGS			= -L$(LIBFT_DIR) -L$(MLX_DIR)
@@ -23,6 +23,9 @@ debug: $(OBJS) $(LIBFT) $(MLX)
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LDFLAGS) $(LDLIBS)
+
+%o: %c
+	$(CC) -g $(CFLAGS) -c $< -o $@
 
 $(BUILD_DIR):
 	mkdir -p $@
