@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebabaogl <ebabaogl@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 13:34:08 by ebabaogl          #+#    #+#             */
-/*   Updated: 2025/01/02 15:12:21 by ebabaogl         ###   ########.fr       */
+/*   Updated: 2025/01/04 13:52:04 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
+# define PADDED_WIDTH 1800
+# define PADDED_HEIGHT 900
 
 # define ON_DESTROY 17
 
