@@ -6,7 +6,7 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:09:01 by ebabaogl          #+#    #+#             */
-/*   Updated: 2025/01/04 16:36:14 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/07 16:42:03 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 #include "window.h"
 #include "fdf.h"
 
+#include <stdio.h>
 void	reset_camera(t_vars *vars)
 {
-	int width_distance;
-	int	height_distance;
+	double	width_distance;
+	double	height_distance;
 
-	width_distance = (PADDED_WIDTH / 2) / (vars->line_count / 2);
-	height_distance = (PADDED_HEIGHT / 2) / (vars->line_len / 2);
+	width_distance = (double)(PADDED_WIDTH) / ((vars->line_len));
+	height_distance = (double)(PADDED_HEIGHT) / ((vars->line_count));
+	printf("width distance: %lf\n", width_distance);
+	printf("height distance: %lf\n", height_distance);
 	vars->a_coef = 0;
 	vars->d_coef = 0;
 	vars->d_coef = 0;
@@ -37,28 +40,31 @@ void	reset_camera(t_vars *vars)
 
 int	close_win(void *param)
 {
-	t_mlx	*mlx;
+	t_mlx		*mlx;
+	static int	win_exists = 1;
 
 	mlx = (t_mlx *)param;
-	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
-	mlx->win_ptr = NULL;
-	mlx_loop_end(mlx->mlx_ptr);
+	if (mlx->win_ptr && win_exists)
+	{
+		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
+		mlx_loop_end(mlx->mlx_ptr);
+		win_exists = 0;
+		mlx->win_ptr = NULL;
+	}
 	return (0);
 }
 
+#include <unistd.h>
 int	key_handler(int keycode, void *param)
 {
 	t_vars	*vars;
 
 	vars = (t_vars *)param;
-	(void)keycode;
-	(void)vars;
 	if (keycode == ESC_KEY)
 	{
 		close_win(vars->mlx);
 		return (0);
 	}
-	render_map(vars);
 	return (0);
 }
 

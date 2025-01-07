@@ -6,7 +6,7 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 11:39:37 by ebabaogl          #+#    #+#             */
-/*   Updated: 2025/01/04 16:03:42 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/07 12:47:31 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct	s_vars
 	int				s_coef;
 	int				a_coef;
 	int				d_coef;
-	int				distance;
+	double			distance;
 	int				line_count;
 	int				line_len;
 	int				anchor_x;
