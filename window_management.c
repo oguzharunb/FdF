@@ -39,8 +39,8 @@ void	reset_camera(t_vars *vars)
 	height_distance = (double)(PADDED_HEIGHT) / ((vars->line_count));
 	printf("width distance: %lf\n", width_distance);
 	printf("height distance: %lf\n", height_distance);
-	vars->x_coef = 0.2;
-	vars->y_coef = 2;
+	vars->x_coef = 0;
+	vars->y_coef = 0;
 	vars->zoom = 1;
 	vars->map_x = 0;
 	vars->map_y = 0;
@@ -79,13 +79,17 @@ int	key_handler(int keycode, void *param)
 		return (0);
 	}
 	else if (keycode == W_KEY)
-		vars->y_coef += 0.04;
+		vars->y_coef += 0.1;
 	else if (keycode == S_KEY)
-		vars->y_coef -= 0.04;
+		vars->y_coef -= 0.1;
 	else if (keycode == D_KEY)
-		vars->x_coef += 0.04;
+		vars->x_coef += 0.1;
 	else if (keycode == A_KEY)
-		vars->x_coef -= 0.04;
+		vars->x_coef -= 0.1;
+	else if (keycode == K_KEY)
+		vars->height -= 0.5;
+	else if (keycode == J_KEY)
+		vars->height += 0.5;
 	draw_background(vars);
 	render_map(vars);
 	return (0);

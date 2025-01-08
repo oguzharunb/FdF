@@ -43,13 +43,16 @@
 
 int render_x(t_vars *vars, int x, int y, int z)
 {
-	return (int)(((sin(vars->y_coef) * ((x - vars->anchor_x) * vars->distance) + 10 * y * cos(vars->x_coef))) + vars->map_x + (cos(vars->x_coef) * z * vars->height));
+	(void)z;
+	(void)y;
+	return (int)((cos(vars->x_coef) * (x - vars->anchor_x) * vars->distance + (y - vars->anchor_y) * vars->distance) + (sin(vars->y_coef) * z * vars->height));
 }
 
 int render_y(t_vars *vars, int x, int y, int z)
 {
+	(void)z;
 	(void)x;
-    return (int)(((sin(vars->x_coef) * (y - vars->anchor_y) * vars->distance + 10 * x * cos(vars->y_coef))) + vars->map_y - (cos(vars->y_coef) * z * vars->height));
+    return (int)((sin(vars->y_coef) * (y - vars->anchor_y) * vars->distance + (x - vars->anchor_x) * vars->distance) - (cos(vars->x_coef) * z * vars->height));
 }
 
 void render_and_put_pixel(t_vars *vars, int x, int y, unsigned long point)

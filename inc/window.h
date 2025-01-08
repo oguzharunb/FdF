@@ -25,6 +25,8 @@
 # define A_KEY 97
 # define S_KEY 115
 # define D_KEY 100
+# define J_KEY 106
+# define K_KEY 107
 
 // enum {
 // 	ON_KEYDOWN = 2,
