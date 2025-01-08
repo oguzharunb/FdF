@@ -19,12 +19,18 @@
 #include <limits.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <math.h>
 
-
-void	put_pixel(void *mlx_ptr, void *win_ptr, int x, int y, unsigned long color)
+int	render_x(t_vars *vars, int x, int z)
 {
-	printf("pixel sent to mlx: %d, %d\n", (WIN_WIDTH / 2) + x, (WIN_HEIGHT / 2) + y);
-	mlx_pixel_put(mlx_ptr, win_ptr, (WIN_WIDTH / 2) + x, (WIN_HEIGHT / 2) - y, color);
+	(void)z;
+	return ((int)((double)(x - vars->anchor_x) * vars->distance));
+}
+
+int	render_y(t_vars *vars, int y, int z)
+{
+	(void)z;
+	return ((int)((double)(y - vars->anchor_y) * vars->distance));
 }
 
 void	render_and_put_pixel(t_vars *vars, int x, int y, unsigned long point)
@@ -32,12 +38,13 @@ void	render_and_put_pixel(t_vars *vars, int x, int y, unsigned long point)
 	int final_x;
 	int	final_y;
 
-	final_x = (int)((x - vars->anchor_x) * (vars->distance));
-	final_y = (int)((vars->anchor_y - y) * (vars->distance));
-	if (get_z(point) > 0)
-		put_pixel(vars->mlx->mlx_ptr, vars->mlx->win_ptr, final_x, final_y, 0xFFFFFF);
-	else
-		put_pixel(vars->mlx->mlx_ptr, vars->mlx->win_ptr, final_x, final_y, 0X0);
+	final_x = render_x(vars, x, get_z(point));
+	final_y = render_y(vars, y, get_z(point));
+	if (x > 0)
+		draw_line(vars, x_y_to_point(final_x, final_y), x_y_to_point(render_x(vars, x - 1, get_z(vars->map[y][x - 1])), final_y), 0x00FFFF);
+	if (y > 0)
+		draw_line(vars, x_y_to_point(final_x, final_y), x_y_to_point(final_x, render_y(vars, y - 1, get_z(vars->map[y - 1][x]))), 0x00FFFF);
+	
 	printf("x,y coordinate: %d, %d\n", x, y);
 	printf("map coordinate: %d, %d\n", final_x, final_y);
 }
@@ -47,32 +54,35 @@ void	render_map(t_vars *vars)
 	int	i;
 	int	j;
 
-	i = 0;
-	printf("distance: %lf\n", vars->distance);
+	printf("distance: %f\n", vars->distance);
 	printf("line count: %d\n", vars->line_count);
 	printf("line len: %d\n", vars->line_len);
 	printf("anchor point: %d %d\n", vars->anchor_x, vars->anchor_y);
+
+	i = 0;
 	while(vars->map[i])
 	{
 		j = 0;
 		while (vars->map[i][j] != ULONG_MAX)
 		{
+			//ft_put_pixel(vars, j, i, vars->map[i][j]);
+			//put_pixel(vars->mlx->mlx_ptr, , j, i, vars->map[i][j]);
 			render_and_put_pixel(vars, j, i, vars->map[i][j]);
 			j++;
 		}
 		i++;
 	}
+	mlx_put_image_to_window(vars->mlx->mlx_ptr, vars->mlx->win_ptr, vars->mlx->image, 0, 0);
 }
 
 void	fdf(t_vars *vars)
 {
-	mlx_hook(vars->mlx->mlx_ptr, ON_DESTROY, 0, close_win, vars->mlx);
+	//mlx_hook(vars->mlx->mlx_ptr, ON_DESTROY, 0, close_win, vars->mlx);
 	mlx_key_hook(vars->mlx->win_ptr, key_handler, vars);
 	reset_camera(vars);
 	render_map(vars);
 	mlx_loop(vars->mlx->mlx_ptr);
-	mlx_destroy_display(vars->mlx->mlx_ptr);
-	//free(vars->mlx->mlx_ptr);
+	free(vars->mlx->mlx_ptr);
 }
 
 void	set_map_props(t_vars *vars)
@@ -110,7 +120,7 @@ int	main(int argc, char **argv)
 		return (write(1, "invalid map", 11), 1);
 	set_map_props(&vars);
 	vars.mlx = &mlx;
-	init_win(&mlx);
+	init_win(&vars);
 	fdf(&vars);
 
 	return (1);

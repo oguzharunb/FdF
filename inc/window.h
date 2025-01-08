@@ -36,6 +36,7 @@ typedef struct	s_mlx
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	void	*image;
 }				t_mlx;
 
 #endif

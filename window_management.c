@@ -68,13 +68,17 @@ int	key_handler(int keycode, void *param)
 	return (0);
 }
 
-int	init_win(t_mlx *mlx)
+int	init_win(t_vars *vars)
 {
-	mlx->mlx_ptr = mlx_init();
-	if (!mlx->mlx_ptr)
+	vars->mlx->mlx_ptr = mlx_init();
+	if (!vars->mlx->mlx_ptr)
 		return (-1);
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "FdF!!1!!!1");
-	if (!mlx->win_ptr)
-		return (free(mlx->mlx_ptr), -1);
+	vars->mlx->win_ptr = mlx_new_window(vars->mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "FdF - obastug");
+	if (!vars->mlx->win_ptr)
+		return (free(vars->mlx->mlx_ptr), -1);
+	vars->mlx->image = mlx_new_image(vars->mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	if (!vars->mlx->image)
+		return (close_win(vars->mlx), -1);
+	vars->data_addr = mlx_get_data_addr(vars->mlx->image, &vars->bits_per_pixel, &vars->size_line, &vars->endian);
 	return (0);
 }

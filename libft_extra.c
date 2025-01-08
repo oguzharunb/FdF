@@ -1,6 +1,24 @@
 #include "libft.h"
 #include <stdio.h>
 
+unsigned long	x_y_to_point(int x, int y)
+{
+	unsigned long	point;
+
+	point = (y) + ((unsigned long)x << 32);
+	return (point);
+}
+
+int	x(unsigned long point)
+{
+	return (point >> 32);
+}
+
+int	y(unsigned long point)
+{
+	return ((point << 32) >> 32);
+}
+
 unsigned int	ft_atoi_hex(char *str)
 {
 	unsigned int	res;
