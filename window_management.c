@@ -14,8 +14,22 @@
 #include "mlx.h"
 #include "window.h"
 #include "fdf.h"
-
 #include <stdio.h>
+
+void	draw_background(t_vars *vars)
+{
+	int	*back_ground;
+	int	i;
+
+	back_ground = (int *)(vars->data_addr);
+	i = 0;
+	while (i < WIN_HEIGHT * WIN_WIDTH)
+	{
+		back_ground[i] = 0x0;
+		i++;
+	}
+}
+
 void	reset_camera(t_vars *vars)
 {
 	double	width_distance;
@@ -25,13 +39,12 @@ void	reset_camera(t_vars *vars)
 	height_distance = (double)(PADDED_HEIGHT) / ((vars->line_count));
 	printf("width distance: %lf\n", width_distance);
 	printf("height distance: %lf\n", height_distance);
-	vars->a_coef = 0;
-	vars->d_coef = 0;
-	vars->d_coef = 0;
-	vars->s_coef = 0;
+	vars->x_coef = 0.2;
+	vars->y_coef = 2;
+	vars->zoom = 1;
 	vars->map_x = 0;
 	vars->map_y = 0;
-	vars->height = 1;
+	vars->height = 10;
 	if (width_distance > height_distance)
 		vars->distance = height_distance;
 	else
@@ -65,6 +78,16 @@ int	key_handler(int keycode, void *param)
 		close_win(vars->mlx);
 		return (0);
 	}
+	else if (keycode == W_KEY)
+		vars->y_coef += 0.04;
+	else if (keycode == S_KEY)
+		vars->y_coef -= 0.04;
+	else if (keycode == D_KEY)
+		vars->x_coef += 0.04;
+	else if (keycode == A_KEY)
+		vars->x_coef -= 0.04;
+	draw_background(vars);
+	render_map(vars);
 	return (0);
 }
 

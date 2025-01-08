@@ -28,10 +28,9 @@ typedef struct	s_vars
 	int				height;
 	int				map_x;
 	int				map_y;
-	int				w_coef;
-	int				s_coef;
-	int				a_coef;
-	int				d_coef;
+	double			x_coef;
+	double			y_coef;
+	double			zoom;
 	double			distance;
 	int				line_count;
 	int				line_len;
@@ -41,7 +40,6 @@ typedef struct	s_vars
 	int				endian;
 	int				size_line;
 	char			*data_addr;
-
 }	t_vars;
 
 char			*read_file(char *file_name);
