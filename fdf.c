@@ -41,54 +41,99 @@
 //	char			*data_addr;
 //}	t_vars;
 
-int render_x(t_vars *vars, int x, int y, int z)
+typedef struct s_point
 {
-	(void)z;
-	(void)y;
-	return (int)((cos(vars->x_coef) * (x - vars->anchor_x) * vars->distance + (y - vars->anchor_y) * vars->distance) + (sin(vars->y_coef) * z * vars->height));
+	int	x;
+	int	y;
+	int	z;
+}	t_point;
+
+void	zoom(t_vars *vars, t_point *point)
+{
+	point->x *= vars->zoom;
+	point->y *= vars->zoom;
+	point->z *= vars->zoom;
 }
 
-int render_y(t_vars *vars, int x, int y, int z)
+void	translate(t_vars *vars, t_point *point)
 {
-	(void)z;
-	(void)x;
-    return (int)((sin(vars->y_coef) * (y - vars->anchor_y) * vars->distance + (x - vars->anchor_x) * vars->distance) - (cos(vars->x_coef) * z * vars->height));
+	point->x += vars->map_x;
+	point->y -= vars->map_y;
 }
 
-void render_and_put_pixel(t_vars *vars, int x, int y, unsigned long point)
+void	rotate_z_x(t_vars *vars, t_point *point)
 {
-	int final_x;
-	int final_y;
-	int prev_x;
-	int	prev_y;
+	double	original_z;
 
-	final_x = render_x(vars, x, y, get_z(point));
-	final_y = render_y(vars, x, y, get_z(point));
+	original_z = point->z;
+	point->z = original_z * cos(vars->z_x_coef) + point->x * -sin(vars->z_x_coef);
+	point->x = original_z * sin(vars->z_x_coef) + point->x * cos(vars->z_x_coef);
+}
+
+void	rotate_y_z(t_vars *vars, t_point *point)
+{
+	double	original_y;
+
+	original_y = point->y;
+	point->y = point->z * sin(vars->y_z_coef) + original_y * cos(vars->y_z_coef); 
+	point->z = point->z * cos(vars->y_z_coef) + original_y * -sin(vars->y_z_coef);
+}
+
+void	rotate_x_y(t_vars *vars, t_point *point)
+{
+	double	original_x;
+
+	original_x = point->x;
+	point->x = original_x * cos(vars->x_y_coef) + point->y * -sin(vars->x_y_coef);
+	point->y = original_x * sin(vars->x_y_coef) + point->y * cos(vars->x_y_coef);
+}
+
+void	render_point(t_vars *vars, t_point *point)
+{
+	point->x = (point->x - vars->anchor_x) * vars->distance;
+	point->y = (point->y - vars->anchor_y) * vars->distance;
+	point->z = point->z * vars->height;
+	rotate_x_y(vars, point);
+	rotate_y_z(vars, point);
+	rotate_z_x(vars, point);
+	translate(vars, point);
+	zoom(vars, point);
+}
+
+void	fill_point(t_point *point, int x, int y, int z)
+{
+	point->x = x;
+	point->y = y;
+	point->z = z;
+}
+
+void render_and_put_pixel(t_vars *vars, int x, int y, unsigned long data)
+{
+	t_point	left_point;
+	t_point	top_point;
+	t_point	cur_point;
+
+	fill_point(&cur_point, x, y, get_z(data));
+	render_point(vars, &cur_point);
 	if (x > 0)
 	{
-		prev_x = render_x(vars, x - 1, y, get_z(vars->map[y][x - 1]));
-		prev_y = render_y(vars, x - 1, y, get_z(vars->map[y][x - 1]));
-		draw_line(vars, x_y_to_point(final_x, final_y), x_y_to_point(prev_x, prev_y), get_color(point));
+		fill_point(&left_point, x - 1, y, get_z(vars->map[y][x - 1]));
+		render_point(vars, &left_point);
+		draw_line(vars, x_y_to_point(cur_point.x, cur_point.y), x_y_to_point(left_point.x, left_point.y), get_color(vars->map[y][x - 1]));
 	}
 
-	if (y > 0) {
-		prev_x = render_x(vars, x, y - 1, get_z(vars->map[y - 1][x]));
-		prev_y = render_y(vars, x, y - 1, get_z(vars->map[y - 1][x]));
-		draw_line(vars, x_y_to_point(final_x, final_y), x_y_to_point(prev_x, prev_y), get_color(point));
+	if (y > 0)
+	{
+		fill_point(&top_point, x, y - 1, get_z(vars->map[y - 1][x]));
+		render_point(vars, &top_point);
+		draw_line(vars, x_y_to_point(cur_point.x, cur_point.y), x_y_to_point(top_point.x, top_point.y), get_color(vars->map[y - 1][x]));
 	}
-	printf("x,y coordinate: %d, %d\n", x, y);
-	printf("map coordinate: %d, %d\n", final_x, final_y);
 }
 
 void	render_map(t_vars *vars)
 {
 	int	i;
 	int	j;
-
-	printf("distance: %f\n", vars->distance);
-	printf("line count: %d\n", vars->line_count);
-	printf("line len: %d\n", vars->line_len);
-	printf("anchor point: %d %d\n", vars->anchor_x, vars->anchor_y);
 
 	i = 0;
 	while(vars->map[i])
@@ -104,9 +149,28 @@ void	render_map(t_vars *vars)
 	mlx_put_image_to_window(vars->mlx->mlx_ptr, vars->mlx->win_ptr, vars->mlx->image, 0, 0);
 }
 
+int	animation_loop(void *v_vars)
+{
+	t_vars	*vars;
+
+	vars = (t_vars *)v_vars;
+	if (vars->animate)
+	{
+		mlx_clear_window(vars->mlx->mlx_ptr, vars->mlx->win_ptr);
+		vars->x_y_coef += 0.01;
+		vars->y_z_coef += 0.01;
+		vars->z_x_coef += 0.01;
+		draw_background(vars);
+		render_map(vars);
+		usleep(10000);
+	}
+	return (1);
+}
+
 void	fdf(t_vars *vars)
 {
 	mlx_key_hook(vars->mlx->win_ptr, key_handler, vars);
+	mlx_loop_hook(vars->mlx->mlx_ptr, animation_loop, vars);
 	reset_camera(vars);
 	render_map(vars);
 	mlx_loop(vars->mlx->mlx_ptr);

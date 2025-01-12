@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obastug <obastug@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 13:34:08 by ebabaogl          #+#    #+#             */
-/*   Updated: 2025/01/05 14:28:04 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/12 15:48:31 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@
 # define D_KEY 100
 # define J_KEY 106
 # define K_KEY 107
+# define Q_KEY 113
+# define E_KEY 101
+# define ARROT_LEFT_KEY 65361
+# define ARROW_UP_KEY 65362
+# define ARROW_RIGHT_KEY 65363
+# define ARROW_DOWN_KEY 65364
+# define N_KEY 110
+# define M_KEY 109
+# define SPACE_KEY 32
 
 // enum {
 // 	ON_KEYDOWN = 2,

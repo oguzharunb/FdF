@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obastug <obastug@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 11:39:37 by ebabaogl          #+#    #+#             */
-/*   Updated: 2025/01/07 12:47:31 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/12 16:49:27 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,17 @@
 #include "window.h"
 #include <stddef.h>
 
-
 typedef struct	s_vars
 {
 	t_mlx			*mlx;
 	unsigned long	**map;
-	int				height;
+	double			height;
+	int				animate;
 	int				map_x;
 	int				map_y;
-	double			x_coef;
-	double			y_coef;
+	double			x_y_coef;
+	double			y_z_coef;
+	double			z_x_coef;
 	double			zoom;
 	double			distance;
 	int				line_count;
@@ -60,7 +61,8 @@ void			reset_camera(t_vars *vars);
 
 void			ft_put_pixel(t_vars *vars, int x, int y, int color);
 void			draw_line(t_vars *vars, unsigned long point1, unsigned long point2, unsigned long color);
-
+void			draw_background(t_vars *vars);
+int				ft_abs(int val);
 int				x(unsigned long point);
 int				y(unsigned long point);
 unsigned long	x_y_to_point(int x, int y);

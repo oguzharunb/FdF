@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obastug <obastug@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:09:01 by ebabaogl          #+#    #+#             */
-/*   Updated: 2025/01/07 16:42:03 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/12 16:28:36 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,11 @@ void	reset_camera(t_vars *vars)
 	height_distance = (double)(PADDED_HEIGHT) / ((vars->line_count));
 	printf("width distance: %lf\n", width_distance);
 	printf("height distance: %lf\n", height_distance);
-	vars->x_coef = 0;
-	vars->y_coef = 0;
+	vars->x_y_coef = 0;
+	vars->y_z_coef = 0;
+	vars->z_x_coef = 0;
 	vars->zoom = 1;
+	vars->animate = 0;
 	vars->map_x = 0;
 	vars->map_y = 0;
 	vars->height = 10;
@@ -75,21 +77,42 @@ int	key_handler(int keycode, void *param)
 	vars = (t_vars *)param;
 	if (keycode == ESC_KEY)
 	{
+		vars->animate = 0;
 		close_win(vars->mlx);
 		return (0);
 	}
+	else if (keycode == E_KEY)
+		vars->x_y_coef += 0.1;
+	else if (keycode == Q_KEY)
+		vars->x_y_coef -= 0.1;
 	else if (keycode == W_KEY)
-		vars->y_coef += 0.1;
+		vars->y_z_coef += 0.1;
 	else if (keycode == S_KEY)
-		vars->y_coef -= 0.1;
-	else if (keycode == D_KEY)
-		vars->x_coef += 0.1;
+		vars->y_z_coef -= 0.1;
 	else if (keycode == A_KEY)
-		vars->x_coef -= 0.1;
+		vars->z_x_coef -= 0.1;
+	else if (keycode == D_KEY)
+		vars->z_x_coef += 0.1;
 	else if (keycode == K_KEY)
 		vars->height -= 0.5;
 	else if (keycode == J_KEY)
 		vars->height += 0.5;
+	else if (keycode == ARROW_RIGHT_KEY)
+		vars->map_x += 5;
+	else if (keycode == ARROT_LEFT_KEY)
+		vars->map_x -= 5;
+	else if (keycode == ARROW_UP_KEY)
+		vars->map_y += 5;
+	else if (keycode == ARROW_DOWN_KEY)
+		vars->map_y -= 5;
+	else if (keycode == N_KEY)
+		vars->zoom += 0.1;
+	else if (keycode == M_KEY && vars->zoom > 0.1)
+		vars->zoom -= 0.1;
+	else if (keycode == SPACE_KEY)
+		vars->animate = !vars->animate;
+	printf("button pressed: %d\n", keycode);
+	printf("animate: %d\n", vars->animate);
 	draw_background(vars);
 	render_map(vars);
 	return (0);
