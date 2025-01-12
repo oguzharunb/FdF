@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pixel_operations.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obastug <obastug@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/12 17:09:42 by obastug           #+#    #+#             */
+/*   Updated: 2025/01/12 17:12:07 by obastug          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
-//
+
 void	ft_put_pixel(t_vars *vars, int x, int y, int color)
 {
 	int		i;
@@ -11,4 +23,11 @@ void	ft_put_pixel(t_vars *vars, int x, int y, int color)
 		vars->data_addr[++i] = color >> 8;
 		vars->data_addr[++i] = color >> 16;
 	}
+}
+
+void	fill_point(t_point *point, int x, int y, int z)
+{
+	point->x = x;
+	point->y = y;
+	point->z = z;
 }
