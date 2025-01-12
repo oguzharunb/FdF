@@ -6,10 +6,9 @@ LIBFT_DIR		= $(LIB_DIR)/libft
 MLX_DIR			= $(LIB_DIR)/minilibx
 LIBFT			= $(LIBFT_DIR)/libft.a
 MLX				= $(MLX_DIR)/libmlx.a
-BUILD_DIR		= build
 
-SRCS			= fdf.c window_management.c read_map.c libft_extra.c point_utils.c pixel_operations.c draw_line.c
-OBJS			= $(addprefix $(BUILD_DIR)/,$(SRCS:.c=.o))
+SRCS			= fdf.c window_management.c read_map.c libft_extra.c point_utils.c pixel_operations.c draw_line.c render_functions.c window_events.c
+OBJS			= $(SRCS:.c=.o)
 CFLAGS			= -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
 LDFLAGS			= -L$(LIBFT_DIR) -L$(MLX_DIR)
 LDLIBS			= -lmlx -lft -lXext -lX11 -lm
@@ -27,12 +26,6 @@ $(NAME): $(OBJS) $(LIBFT) $(MLX)
 %o: %c
 	$(CC) -g $(CFLAGS) -c $< -o $@
 
-$(BUILD_DIR):
-	mkdir -p $@
-
-$(BUILD_DIR)/%.o: %.c | $(BUILD_DIR)
-	$(CC) $(CFLAGS) -c $^ -o $@
-
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
 
@@ -40,7 +33,7 @@ $(MLX):
 	@make -C $(MLX_DIR)
 
 clean:
-	$(RM) $(BUILD_DIR)
+	$(RM) $(OBJS)
 	@make -C $(LIBFT_DIR) clean
 	@make -C $(MLX_DIR) clean
 
