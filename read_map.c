@@ -1,11 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obastug <obastug@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/12 16:56:20 by obastug           #+#    #+#             */
+/*   Updated: 2025/01/12 17:35:57 by obastug          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fcntl.h"
 #include <unistd.h>
 #include "libft.h"
 #include <stdlib.h>
 #include "fdf.h"
-
-#include <stdio.h>
 #include <limits.h>
+
 char	*read_file(char *file_name)
 {
 	int		fd;
@@ -104,5 +115,3 @@ unsigned long	**map_string_to_arr_2d(char *whole_file)
 	map_2d_ul[line_count] = '\0';
 	return (free(map_2d_str), map_2d_ul);
 }
-
-// 3,0xff 6,0xff00
