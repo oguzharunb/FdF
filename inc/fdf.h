@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: obastug <obastug@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/02 11:39:37 by ebabaogl          #+#    #+#             */
-/*   Updated: 2025/01/12 16:49:27 by obastug          ###   ########.fr       */
+/*   Created: 2025/01/12 17:02:07 by obastug           #+#    #+#             */
+/*   Updated: 2025/01/12 17:19:56 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,13 @@ typedef struct	s_vars
 	char			*data_addr;
 }	t_vars;
 
+typedef struct s_point
+{
+	int	x;
+	int	y;
+	int	z;
+}	t_point;
+
 char			*read_file(char *file_name);
 int				init_win(t_vars *vars);
 unsigned int	ft_atoi_hex(char *str);
@@ -59,6 +66,7 @@ int				key_handler(int keycode, void *param);
 int				close_win(void *param);
 void			reset_camera(t_vars *vars);
 
+int				animation_loop(void *v_vars);
 void			ft_put_pixel(t_vars *vars, int x, int y, int color);
 void			draw_line(t_vars *vars, unsigned long point1, unsigned long point2, unsigned long color);
 void			draw_background(t_vars *vars);
@@ -66,4 +74,11 @@ int				ft_abs(int val);
 int				x(unsigned long point);
 int				y(unsigned long point);
 unsigned long	x_y_to_point(int x, int y);
+void			fill_point(t_point *point, int x, int y, int z);
+
+void			zoom(t_vars *vars, t_point *point);
+void			translate(t_vars *vars, t_point *point);
+void			rotate_z_x(t_vars *vars, t_point *point);
+void			rotate_y_z(t_vars *vars, t_point *point);
+void			rotate_x_y(t_vars *vars, t_point *point);
 #endif
