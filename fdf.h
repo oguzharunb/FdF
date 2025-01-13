@@ -6,7 +6,7 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 17:02:07 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/13 14:33:36 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 15:07:38 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void			pro_parallel(t_vars *vars);
 
 void			render_and_put_pixel(t_vars *vars, int x,
 					int y, unsigned long data);
-int				animation_loop(void *v_vars);
 void			ft_put_pixel(t_vars *vars, int x,
 					int y, int color);
 void			draw_line(t_vars *vars, unsigned long point1,
