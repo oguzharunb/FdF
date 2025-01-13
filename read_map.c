@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obastug <obastug@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 16:56:20 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/12 17:35:57 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 12:58:28 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ unsigned long	point_to_ulong(char *point)
 	else
 		color = ft_atoi_hex(point_attrs[1] + 2);
 	ret = (((unsigned long)z) << 32) | (color);
-	free(point_attrs);
+	free_string_list(point_attrs);
 	return (ret);
 }
 
@@ -81,7 +81,7 @@ unsigned long	*map_string_to_ulong_array(char *map_one_line)
 	final_len = ft_ptrarrlen((unsigned long *)point_array);
 	final_array = malloc(sizeof(unsigned long) * (final_len + 1));
 	if (!final_array)
-		return (free(point_array), NULL);
+		return (free_string_list(point_array), NULL);
 	i = 0;
 	while (point_array[i])
 	{
@@ -89,7 +89,7 @@ unsigned long	*map_string_to_ulong_array(char *map_one_line)
 		i++;
 	}
 	final_array[final_len] = ULONG_MAX;
-	return (free(point_array), final_array);
+	return (free_string_list(point_array), final_array);
 }
 
 unsigned long	**map_string_to_arr_2d(char *whole_file)
@@ -105,7 +105,7 @@ unsigned long	**map_string_to_arr_2d(char *whole_file)
 	line_count = ft_ptrarrlen((unsigned long *)map_2d_str);
 	map_2d_ul = malloc(sizeof(unsigned long *) * (line_count + 1));
 	if (!map_2d_ul)
-		return (free(map_2d_str), NULL);
+		return (free_string_list(map_2d_str), NULL);
 	i = 0;
 	while (map_2d_str[i])
 	{
@@ -113,5 +113,5 @@ unsigned long	**map_string_to_arr_2d(char *whole_file)
 		i++;
 	}
 	map_2d_ul[line_count] = '\0';
-	return (free(map_2d_str), map_2d_ul);
+	return (free_string_list(map_2d_str), map_2d_ul);
 }
