@@ -6,7 +6,7 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 16:56:33 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/13 13:16:49 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 13:39:33 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,6 @@
 #include "mlx.h"
 #include "window.h"
 #include "fdf.h"
-
-void	draw_background(t_vars *vars)
-{
-	int	*back_ground;
-	int	i;
-
-	back_ground = (int *)(vars->data_addr);
-	i = 0;
-	while (i < WIN_HEIGHT * WIN_WIDTH)
-	{
-		back_ground[i] = 0x0;
-		i++;
-	}
-}
 
 int	close_win(void *param)
 {
