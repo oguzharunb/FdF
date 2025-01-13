@@ -6,7 +6,7 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 17:02:07 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/13 12:57:13 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 13:16:49 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ void			render_map(t_vars *vars);
 
 int				key_handler(int keycode, void *param);
 int				close_win(void *param);
-void			reset_camera(t_vars *vars);
+void			pro_top_view(t_vars *vars);
+void			pro_parallel(t_vars *vars);
 
 int				animation_loop(void *v_vars);
 void			ft_put_pixel(t_vars *vars, int x, int y, int color);
