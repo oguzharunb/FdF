@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obastug <obastug@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 16:55:29 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/12 18:09:43 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 12:58:57 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	fdf(t_vars *vars)
 	mlx_loop_hook(vars->mlx->mlx_ptr, animation_loop, vars);
 	reset_camera(vars);
 	render_map(vars);
-	printf("yes\n");
 	mlx_loop(vars->mlx->mlx_ptr);
 }
 
@@ -46,7 +45,6 @@ void	set_map_props(t_vars *vars)
 	vars->anchor_y = i / 2;
 }
 
-#include <stdio.h>
 int	main(int argc, char **argv)
 {
 	t_vars	vars;
@@ -74,6 +72,6 @@ int	main(int argc, char **argv)
 	mlx_destroy_display(mlx.mlx_ptr);
 	if (mlx.mlx_ptr)
 		free(mlx.mlx_ptr);
-	free(vars.map);
+	free_number_map(vars.map);
 	return (0);
 }
