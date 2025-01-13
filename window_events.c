@@ -6,7 +6,7 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 17:08:29 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/13 12:28:03 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 13:38:39 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,42 +15,28 @@
 #include <unistd.h>
 #include <mlx.h>
 
-void	render_point(t_vars *vars, t_point *point)
-{
-	point->x = (point->x - vars->anchor_x) * vars->distance;
-	point->y = (point->y - vars->anchor_y) * vars->distance;
-	point->z = point->z * vars->height;
-	rotate_x_y(vars, point);
-	rotate_y_z(vars, point);
-	rotate_z_x(vars, point);
-	translate(vars, point);
-	zoom(vars, point);
-}
 
-void render_and_put_pixel(t_vars *vars, int x, int y, unsigned long data)
-{
-	t_point	left_point;
-	t_point	top_point;
-	t_point	cur_point;
 
-	fill_point(&cur_point, x, y, get_z(data));
-	render_point(vars, &cur_point);
-	if (x > 0)
-	{
-		fill_point(&left_point, x - 1, y, get_z(vars->map[y][x - 1]));
-		render_point(vars, &left_point);
-		draw_line(vars, x_y_to_point(cur_point.x, cur_point.y)
-		, x_y_to_point(left_point.x, left_point.y)
-		, get_color(vars->map[y][x - 1]));
-	}
-	if (y > 0)
-	{
-		fill_point(&top_point, x, y - 1, get_z(vars->map[y - 1][x]));
-		render_point(vars, &top_point);
-		draw_line(vars, x_y_to_point(cur_point.x, cur_point.y)
-		, x_y_to_point(top_point.x, top_point.y)
-		, get_color(vars->map[y - 1][x]));
-	}
+void	put_info(t_vars *vars)
+{
+	mlx_string_put(vars->mlx->mlx_ptr, vars->mlx->win_ptr
+	, 50, 70, 0xFFFFFF, "Parallel View: U");
+	mlx_string_put(vars->mlx->mlx_ptr, vars->mlx->win_ptr
+	, 50, 90, 0xFFFFFF, "Top View: T");
+	mlx_string_put(vars->mlx->mlx_ptr, vars->mlx->win_ptr
+	, 50, 110, 0xFFFFFF, "Translate: Arrow Keys");
+	mlx_string_put(vars->mlx->mlx_ptr, vars->mlx->win_ptr
+	, 50, 130, 0xFFFFFF, "Rotate x/y: Q-E");
+	mlx_string_put(vars->mlx->mlx_ptr, vars->mlx->win_ptr
+	, 50, 150, 0xFFFFFF, "Rotate x/z: A-D");
+	mlx_string_put(vars->mlx->mlx_ptr, vars->mlx->win_ptr
+	, 50, 170, 0xFFFFFF, "Rotate y/z: W-S");
+	mlx_string_put(vars->mlx->mlx_ptr, vars->mlx->win_ptr
+	, 50, 190, 0xFFFFFF, "Zoom in out: N-M");
+	mlx_string_put(vars->mlx->mlx_ptr, vars->mlx->win_ptr
+	, 50, 210, 0xFFFFFF, "Height + -: J-K");
+	mlx_string_put(vars->mlx->mlx_ptr, vars->mlx->win_ptr
+	, 50, 230, 0xFFFFFF, "Animate: Space");
 }
 
 void	render_map(t_vars *vars)
@@ -70,6 +56,7 @@ void	render_map(t_vars *vars)
 		i++;
 	}
 	mlx_put_image_to_window(vars->mlx->mlx_ptr, vars->mlx->win_ptr, vars->mlx->image, 0, 0);
+	put_info(vars);
 }
 
 int	animation_loop(void *v_vars)
