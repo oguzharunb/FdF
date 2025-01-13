@@ -6,7 +6,7 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 16:55:29 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/13 13:16:49 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 13:32:50 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ int	main(int argc, char **argv)
 	free(map_str);
 	set_map_props(&vars);
 	vars.mlx = &mlx;
-	init_win(&vars);
+	if(init_win(&vars))
+		return (1);
 	fdf(&vars);
 	mlx_destroy_image(mlx.mlx_ptr, mlx.image);
 	mlx_destroy_window(mlx.mlx_ptr, mlx.win_ptr);
