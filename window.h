@@ -6,7 +6,7 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 17:02:15 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/13 12:43:25 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 13:11:25 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,14 @@
 # define K_KEY 107
 # define Q_KEY 113
 # define E_KEY 101
+# define N_KEY 110
+# define M_KEY 109
+# define T_KEY 116
+# define U_KEY 117
 # define ARROT_LEFT_KEY 65361
 # define ARROW_UP_KEY 65362
 # define ARROW_RIGHT_KEY 65363
 # define ARROW_DOWN_KEY 65364
-# define N_KEY 110
-# define M_KEY 109
 # define SPACE_KEY 32
 
 typedef struct	s_mlx
