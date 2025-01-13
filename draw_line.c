@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obastug <obastug@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 16:55:15 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/12 17:24:37 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 13:45:10 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,16 @@ int	ft_abs(int val)
 	return (val);
 }
 
-void draw_line(t_vars *vars, unsigned long point1, unsigned long point2, unsigned long color)
+void	draw_line(t_vars *vars, unsigned long point1
+, unsigned long point2, unsigned long color)
 {
-	int steps;
-	double starx = x(point1);
-	double stary = y(point1);
-	int	i;
+	int		steps;
+	double	starx;
+	double	stary;
+	int		i;
 
+	stary = y(point1);
+	starx = x(point1);
 	steps = ft_abs(y(point2) - y(point1));
 	if (ft_abs(x(point2) - x(point1)) > ft_abs(y(point2) - y(point1)))
 		steps = ft_abs(x(point2) - x(point1));
