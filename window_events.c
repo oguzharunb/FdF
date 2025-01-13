@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_events.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obastug <obastug@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 17:08:29 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/12 17:18:25 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 12:28:03 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,12 @@ int	animation_loop(void *v_vars)
 	if (vars->animate)
 	{
 		mlx_clear_window(vars->mlx->mlx_ptr, vars->mlx->win_ptr);
-		vars->x_y_coef += 0.01;
-		vars->y_z_coef += 0.01;
-		vars->z_x_coef += 0.01;
+		vars->x_y_coef += 0.005;
+		vars->y_z_coef += 0.005;
+		vars->z_x_coef += 0.005;
 		draw_background(vars);
 		render_map(vars);
-		usleep(10000);
+		usleep(5000);
 	}
 	return (1);
 }
