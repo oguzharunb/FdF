@@ -6,7 +6,7 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 16:55:29 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/13 14:30:52 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 14:48:00 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ int	main(int argc, char **argv)
 	}
 	map_str = read_file(argv[1]);
 	if (!map_str)
-		return (write(1, "file couldn't read", 18), 1);
+		return (write(1, "file couldn't read\n", 18), 1);
 	vars.map = map_string_to_arr_2d(map_str);
 	if (!vars.map)
-		return (write(1, "invalid map", 11), 1);
+		return (write(1, "invalid map\n", 11), 1);
 	free(map_str);
 	set_map_props(&vars);
 	vars.mlx = &mlx;
