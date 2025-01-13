@@ -1,13 +1,12 @@
 NAME			= fdf
 
 INC_DIR			= inc
-LIB_DIR			= lib
-LIBFT_DIR		= $(LIB_DIR)/libft
-MLX_DIR			= $(LIB_DIR)/minilibx
+LIBFT_DIR		= libft
+MLX_DIR			= minilibx
 LIBFT			= $(LIBFT_DIR)/libft.a
 MLX				= $(MLX_DIR)/libmlx.a
 
-SRCS			= fdf.c window_management.c read_map.c libft_extra.c point_utils.c pixel_operations.c draw_line.c render_functions.c window_events.c
+SRCS			= fdf.c window_management.c read_map.c libft_extra.c point_utils.c pixel_operations.c draw_line.c render_functions.c window_events.c free_extra.c
 OBJS			= $(SRCS:.c=.o)
 CFLAGS			= -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
 LDFLAGS			= -L$(LIBFT_DIR) -L$(MLX_DIR)
