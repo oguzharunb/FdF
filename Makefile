@@ -8,8 +8,8 @@ LIBFT			= $(LIBFT_DIR)/libft.a
 MLX				= $(MLX_DIR)/libmlx.a
 BONUS_DIR		= bonus
 
-SRCS			= fdf.c window_management.c read_map.c libft_extra.c point_utils.c pixel_operations.c draw_line.c render_point.c window_events.c free_extra.c projectiles.c
-BONUS_SRCS		= draw_line_bonus.c  fdf_bonus.c	fdf_bonus.h  free_extra_bonus.c  libft_extra_bonus.c  pixel_operations_bonus.c	point_utils_bonus.c  projectiles_bonus.c  read_map_bonus.c  render_point_bonus.c  window_bonus.h  window_events_bonus.c  window_management_bonus.c
+SRCS			= fdf.c window_management.c read_map.c libft_extra.c point_utils.c render_point.c pixel_operations.c draw_line.c window_events.c free_extra.c projectiles.c
+BONUS_SRCS		= draw_line_bonus.c  fdf_bonus.c free_extra_bonus.c libft_extra_bonus.c pixel_operations_bonus.c point_utils_bonus.c  projectiles_bonus.c  read_map_bonus.c  render_point_bonus.c window_events_bonus.c  window_management_bonus.c
 OBJS			= $(SRCS:.c=.o)
 BONUS_OBJS		= $(addprefix $(BONUS_DIR)/,$(BONUS_SRCS:.c=.o))
 CFLAGS			= -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
