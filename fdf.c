@@ -6,7 +6,7 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 16:55:29 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/13 12:58:57 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 13:16:49 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	fdf(t_vars *vars)
 {
 	mlx_key_hook(vars->mlx->win_ptr, key_handler, vars);
 	mlx_loop_hook(vars->mlx->mlx_ptr, animation_loop, vars);
-	reset_camera(vars);
+	pro_top_view(vars);
 	render_map(vars);
 	mlx_loop(vars->mlx->mlx_ptr);
 }
