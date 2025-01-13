@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obastug <obastug@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 16:56:33 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/12 18:06:59 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 13:01:40 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,13 +118,20 @@ int	init_win(t_vars *vars)
 {
 	vars->mlx->mlx_ptr = mlx_init();
 	if (!vars->mlx->mlx_ptr)
-		return (-1);
+		return (1);
 	vars->mlx->win_ptr = mlx_new_window(vars->mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "FdF - obastug");
 	if (!vars->mlx->win_ptr)
-		return (free(vars->mlx->mlx_ptr), -1);
+	{
+		mlx_destroy_display(vars->mlx->mlx_ptr);
+		return (1);
+	}
 	vars->mlx->image = mlx_new_image(vars->mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	if (!vars->mlx->image)
-		return (-1);
+	{
+		mlx_destroy_display(vars->mlx->mlx_ptr);
+		mlx_destroy_window(vars->mlx->mlx_ptr, vars->mlx->win_ptr);
+		return (1);
+	}
 	vars->data_addr = mlx_get_data_addr(vars->mlx->image, &vars->bits_per_pixel, &vars->size_line, &vars->endian);
 	return (0);
 }
