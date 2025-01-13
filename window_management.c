@@ -6,11 +6,10 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 16:56:33 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/13 15:04:25 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 15:19:51 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "mlx.h"
 #include "window.h"
 #include "fdf.h"
