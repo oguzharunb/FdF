@@ -6,21 +6,21 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 17:02:07 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/13 14:29:27 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 14:33:36 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-#define BUFFER_SIZE 50000
-#define COLOR_MASK 4294967295U
-#define DEFAULT_COLOR 0x00FFFFFF
+# define BUFFER_SIZE 50000
+# define COLOR_MASK 4294967295U
+# define DEFAULT_COLOR 0x00FFFFFF
 
-#include "window.h"
-#include <stddef.h>
+# include "window.h"
+# include <stddef.h>
 
-typedef struct	s_vars
+typedef struct s_vars
 {
 	t_mlx			*mlx;
 	unsigned long	**map;
@@ -59,7 +59,7 @@ unsigned long	point_to_ulong(char *point);
 unsigned long	**map_string_to_arr_2d(char *whole_file);
 size_t			ft_ptrarrlen(unsigned long	*arr);
 
-unsigned long	get_color(unsigned long);
+unsigned long	get_color(unsigned long point);
 unsigned long	get_z(unsigned long point);
 
 void			render_map(t_vars *vars);
@@ -70,10 +70,13 @@ int				close_win(void *param);
 void			pro_top_view(t_vars *vars);
 void			pro_parallel(t_vars *vars);
 
-void			render_and_put_pixel(t_vars *vars, int x, int y, unsigned long data);
+void			render_and_put_pixel(t_vars *vars, int x,
+					int y, unsigned long data);
 int				animation_loop(void *v_vars);
-void			ft_put_pixel(t_vars *vars, int x, int y, int color);
-void			draw_line(t_vars *vars, unsigned long point1, unsigned long point2, unsigned long color);
+void			ft_put_pixel(t_vars *vars, int x,
+					int y, int color);
+void			draw_line(t_vars *vars, unsigned long point1,
+					unsigned long point2, unsigned long color);
 void			draw_background(t_vars *vars);
 int				ft_abs(int val);
 int				x(unsigned long point);
