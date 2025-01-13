@@ -6,7 +6,7 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 17:02:07 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/13 13:45:47 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 14:29:27 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ unsigned long	get_color(unsigned long);
 unsigned long	get_z(unsigned long point);
 
 void			render_map(t_vars *vars);
+void			destroy_mlx(t_mlx *mlx);
 
 int				key_handler(int keycode, void *param);
 int				close_win(void *param);

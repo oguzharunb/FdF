@@ -6,7 +6,7 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 16:55:29 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/13 13:32:50 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 14:30:52 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 #include <limits.h>
 #include <unistd.h>
 #include <math.h>
-
 #include <stdio.h>
+
 void	fdf(t_vars *vars)
 {
 	mlx_key_hook(vars->mlx->win_ptr, key_handler, vars);
@@ -49,8 +49,8 @@ int	main(int argc, char **argv)
 {
 	t_vars	vars;
 	t_mlx	mlx;
-	char 	*map_str;
-	
+	char	*map_str;
+
 	if (argc != 2)
 	{
 		write(STDERR_FILENO, "using: fdf <map>\n", 17);
@@ -65,14 +65,11 @@ int	main(int argc, char **argv)
 	free(map_str);
 	set_map_props(&vars);
 	vars.mlx = &mlx;
-	if(init_win(&vars))
+	if (init_win(&vars))
 		return (1);
 	fdf(&vars);
-	mlx_destroy_image(mlx.mlx_ptr, mlx.image);
-	mlx_destroy_window(mlx.mlx_ptr, mlx.win_ptr);
-	mlx_destroy_display(mlx.mlx_ptr);
-	if (mlx.mlx_ptr)
-		free(mlx.mlx_ptr);
+	destroy_mlx(&mlx);
+	free(mlx.mlx_ptr);
 	free_number_map(vars.map);
 	return (0);
 }
