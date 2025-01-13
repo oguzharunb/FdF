@@ -6,7 +6,7 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 16:56:33 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/13 15:02:19 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 15:50:42 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	key_handler3(int keycode, t_vars *vars)
 		pro_top_view(vars);
 	else if (keycode == U_KEY)
 		pro_parallel(vars);
+	else if (keycode == C_KEY)
+		pro_conic_view(vars);
 }
 
 void	key_handler2(int keycode, t_vars *vars)
