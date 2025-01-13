@@ -6,7 +6,7 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 16:55:29 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/13 15:30:40 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 15:45:43 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@
 #include <unistd.h>
 #include <math.h>
 #include <stdio.h>
+#include <X11/Xlib.h>
 
 void	fdf(t_vars *vars)
 {
+	mlx_hook(vars->mlx->win_ptr, DestroyNotify, 0, close_win, vars);
 	mlx_key_hook(vars->mlx->win_ptr, key_handler, vars);
 	mlx_loop_hook(vars->mlx->mlx_ptr, animation_loop, vars);
 	pro_parallel(vars);
