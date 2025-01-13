@@ -6,7 +6,7 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 17:02:15 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/13 15:25:32 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 15:50:02 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define M_KEY 109
 # define T_KEY 116
 # define U_KEY 117
+# define C_KEY 99
 # define ARROT_LEFT_KEY 65361
 # define ARROW_UP_KEY 65362
 # define ARROW_RIGHT_KEY 65363
