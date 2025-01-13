@@ -6,7 +6,7 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 16:56:33 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/13 13:39:33 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 14:43:39 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,20 @@ int	close_win(void *param)
 		win_exists = 0;
 	}
 	return (0);
+}
+
+void	key_handler3(int keycode, t_vars *vars)
+{
+	if (keycode == N_KEY)
+		vars->zoom += 0.1;
+	else if (keycode == M_KEY && vars->zoom > 0.1)
+		vars->zoom -= 0.1;
+	else if (keycode == SPACE_KEY)
+		vars->animate = !vars->animate;
+	else if (keycode == T_KEY)
+		pro_top_view(vars);
+	else if (keycode == U_KEY)
+		pro_parallel(vars);
 }
 
 void	key_handler2(int keycode, t_vars *vars)
@@ -61,6 +75,7 @@ int	key_handler(int keycode, void *param)
 {
 	t_vars			*vars;
 	static int		once_quit = 0;
+
 	vars = (t_vars *)param;
 	if (once_quit)
 		return (0);
@@ -71,17 +86,8 @@ int	key_handler(int keycode, void *param)
 		close_win(vars);
 		return (0);
 	}
-	else if (keycode == N_KEY)
-		vars->zoom += 0.1;
-	else if (keycode == M_KEY && vars->zoom > 0.1)
-		vars->zoom -= 0.1;
-	else if (keycode == SPACE_KEY)
-		vars->animate = !vars->animate;
-	else if (keycode == T_KEY)
-		pro_top_view(vars);
-	else if (keycode == U_KEY)
-		pro_parallel(vars);
 	key_handler2(keycode, param);
+	key_handler3(keycode, param);
 	draw_background(vars);
 	render_map(vars);
 	return (0);
@@ -92,7 +98,8 @@ int	init_win(t_vars *vars)
 	vars->mlx->mlx_ptr = mlx_init();
 	if (!vars->mlx->mlx_ptr)
 		return (1);
-	vars->mlx->win_ptr = mlx_new_window(vars->mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "FdF - obastug");
+	vars->mlx->win_ptr = mlx_new_window(vars->mlx->mlx_ptr, WIN_WIDTH,
+			WIN_HEIGHT, "FdF - obastug");
 	if (!vars->mlx->win_ptr)
 	{
 		mlx_destroy_display(vars->mlx->mlx_ptr);
@@ -105,6 +112,7 @@ int	init_win(t_vars *vars)
 		mlx_destroy_window(vars->mlx->mlx_ptr, vars->mlx->win_ptr);
 		return (1);
 	}
-	vars->data_addr = mlx_get_data_addr(vars->mlx->image, &vars->bits_per_pixel, &vars->size_line, &vars->endian);
+	vars->data_addr = mlx_get_data_addr(vars->mlx->image, &vars->bits_per_pixel,
+			&vars->size_line, &vars->endian);
 	return (0);
 }

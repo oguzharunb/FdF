@@ -6,7 +6,7 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 16:56:20 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/13 13:42:08 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 14:37:00 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ char	*read_file(char *file_name)
 	{
 		buffer = malloc(BUFFER_SIZE + 1);
 		if (!buffer)
-			return (free(map), write(STDERR_FILENO, "allocation error", 16), NULL);
+			return (free(map), write(STDERR_FILENO, "allocation error",
+					16), NULL);
 		ret = read(fd, buffer, BUFFER_SIZE);
 		if (ret == -1)
 			return (free(map), write(STDERR_FILENO, "read error", 10), NULL);
@@ -74,7 +75,7 @@ unsigned long	*map_string_to_ulong_array(char *map_one_line)
 	char			**point_array;
 	size_t			final_len;
 	unsigned long	*final_array;
-	
+
 	point_array = ft_split(map_one_line, ' ');
 	if (!point_array)
 		return (NULL);
@@ -96,7 +97,7 @@ unsigned long	**map_string_to_arr_2d(char *whole_file)
 {
 	char			**map_2d_str;
 	unsigned long	**map_2d_ul;
-	int		i;
+	int				i;
 	size_t			line_count;
 
 	map_2d_str = ft_split(whole_file, '\n');

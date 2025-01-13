@@ -6,7 +6,7 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 17:02:15 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/13 13:11:25 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 14:43:59 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define ARROW_DOWN_KEY 65364
 # define SPACE_KEY 32
 
-typedef struct	s_mlx
+typedef struct s_mlx
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
