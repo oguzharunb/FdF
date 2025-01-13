@@ -6,12 +6,12 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 17:02:15 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/13 15:04:49 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 15:25:32 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WINDOW_H
-# define WINDOW_H
+#ifndef WINDOW_BONUS_H
+# define WINDOW_BONUS_H
 
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080

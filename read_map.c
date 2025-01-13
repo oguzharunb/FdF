@@ -6,7 +6,7 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 16:56:20 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/13 14:37:00 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 15:28:55 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*read_file(char *file_name)
 
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
-		return (write(STDERR_FILENO, "file couldnt open", 17), NULL);
+		return (NULL);
 	ret = 1;
 	map = NULL;
 	while (ret)

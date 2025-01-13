@@ -6,7 +6,7 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 16:56:20 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/13 14:52:16 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 15:30:26 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,22 @@ char	*read_file(char *file_name)
 
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
-		return (write(STDERR_FILENO, "file couldnt open", 17), NULL);
+		return (NULL);
 	ret = 1;
 	map = NULL;
 	while (ret)
 	{
 		buffer = malloc(BUFFER_SIZE + 1);
 		if (!buffer)
-			return (free(map), write(STDERR_FILENO, "allocation error",
-					16), NULL);
+			return (free(map), write(STDERR_FILENO, "allocation error\n",
+					17), NULL);
 		ret = read(fd, buffer, BUFFER_SIZE);
 		if (ret == -1)
-			return (free(map), write(STDERR_FILENO, "read error", 10), NULL);
+			return (free(map), write(STDERR_FILENO, "read error\n", 11), NULL);
 		buffer[ret] = '\0';
 		map = ft_strjoin(map, buffer);
 		if (!map)
-			return (write(STDERR_FILENO, "allocation error", 16), NULL);
+			return (write(STDERR_FILENO, "allocation error\n", 17), NULL);
 	}
 	return (map);
 }

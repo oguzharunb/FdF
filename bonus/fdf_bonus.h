@@ -6,12 +6,12 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 17:02:07 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/13 15:04:59 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 15:25:41 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FDF_BONUS_H
+# define FDF_BONUS_H
 
 # define BUFFER_SIZE 50000
 # define COLOR_MASK 4294967295U
