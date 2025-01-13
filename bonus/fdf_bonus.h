@@ -6,7 +6,7 @@
 /*   By: obastug <obastug@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 17:02:07 by obastug           #+#    #+#             */
-/*   Updated: 2025/01/13 15:25:41 by obastug          ###   ########.fr       */
+/*   Updated: 2025/01/13 15:49:40 by obastug          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int				key_handler(int keycode, void *param);
 int				close_win(void *param);
 void			pro_top_view(t_vars *vars);
 void			pro_parallel(t_vars *vars);
+void			pro_conic_view(t_vars *vars);
 
 void			render_and_put_pixel(t_vars *vars, int x,
 					int y, unsigned long data);
